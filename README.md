@@ -1,6 +1,6 @@
 Clone This Project (Make Sure You Have Git Installed)
 
-Install Dependencies
+Install Dependencies\n
 pip install -r requirements.txt
 
 Set Database (Make Sure you are in directory same as manage.py)
