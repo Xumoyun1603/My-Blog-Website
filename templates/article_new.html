@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-lg-10">
+            <h1>New Post</h1>
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                {{ form.media }}  {# ckeditor qo'shiladi #}
+                {{ form|crispy }}
+                <button class="btn btn-success ml-2" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

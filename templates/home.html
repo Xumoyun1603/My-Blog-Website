@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+  <!-- Home -->
+    {% if user.is_authenticated %}
+        <div class="row mb-2">
+            <div class="col-4 col-md-2 p-0 my-auto mx-auto">
+                <img src="{% static "img/merlin.jpg" %}" class="img-fluid rounded-circle" alt="Image">
+            </div>
+        </div>
+        <div class="row justify-content-md-center mb-2">
+            <div class="col-12 col-lg-8">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bolder">Nurimov Xumoyunning shaxsiy blogiga xush kelibsiz.</h5>
+                        <p class="card-text">
+                            Bu yerda men va boshqa adminlarimiz qo'yib boradigan dasturlash,
+                            tarmoq, axborot xavfsizligi va kiberxavfsizlik haqidagi yangiliklarni ko'rib borasiz.
+                        </p>
+                        <a href="{% url 'article_list' %}" class="btn btn-primary">Read Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="row flex-column-reverse flex-md-row text-center text-md-start justify-content-md-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="row">
+                    <div class="col-4 col-md-3 p-0 my-auto mx-auto">
+                        <img src="{% static "img/merlin.jpg" %}" class="img-fluid rounded-circle" alt="Image">
+                    </div>
+                    <div class="col-12 col-md-9 my-auto px-4">
+                        <h1 class="fw-bolder">Khumoyun Nurimov</h1>
+                        <h2 class="text-secondary fst-italic">Python(Django) Junior Developer</h2>
+                        <div class="social-links justify-content-center justify-content-md-start">
+                            <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+                            <a href="https://github.com/Xumoyun1603"><i class="fab fa-github"></i></a>
+                            <a href="https://t.me/Khumoyun1209"><i class="fab fa-telegram"></i></a>
+                            <a href="https://instagram.com/nurimov.khumoyun"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-4 justify-content-md-center">
+                    <div class="col-12">
+                        <form class="text-center">
+                            <a href="{% url 'login' %}" class="btn btn-outline-success fs-5" type="submit">Read Blog</a>
+                            <a href="{% url 'about' %}" class="btn btn-outline-success fs-5" type="submit">About Me</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+<!-- /Home -->
+{% endblock content %}

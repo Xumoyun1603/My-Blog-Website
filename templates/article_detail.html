@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-lg-10">
+            <div class="card border-light">
+                <div class="card-body">
+                    <h1 class="card-title fw-bolder fs-3">{{ article.title }}</h1>
+                    <h6 class="card-subtitle mb-2 text-muted fw-bolder fs-5">Muallif: {{ article.author | title }} | {{ article.date }}</h6>
+                    {%  if object.photo %}
+                        <img class="card-img-top mb-2" src="{{ article.photo.url }}" alt="{{ article.title }}">
+                    {% endif %}
+                    <p class="card-text">{{ article.body | safe}}</p>
+                    {% if user.is_superuser %}
+                        <a href="{% url 'article-edit' article.slug %}" class="link-warning">Edit</a> |
+                        <a href="{% url 'article-delete' article.slug %}" class="link-danger">Delete</a> |
+                    {% endif %}
+                    <a href="{% url 'article_list' %}" class="link-primary">All Posts</a>
+                </div>
+                <div class="card">
+                    <div class="card-header text-center bg-light">
+                        <h5 class="mb-0">Comments</h5>
+                    </div>
+                </div>
+                <div class="row mt-2 p-2">
+                    <div class="col-12 col-lg-7">
+                    {% if comments %}
+                        {%  for comment in comments %}
+                            <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                    <h5 class="card-title fw-bold">
+                                        {{ comment.name }} -
+                                        <span class="text-muted font-weight-normal fs-6">{{ comment.created_on }}</span>
+                                    </h5>
+                                    <p class="card-text">{{ comment.body | linebreaks }}</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <h5>No Comments</h5>
+                    {% endif %}
+                    </div>
+                    <div class="col-12 col-lg-5">
+                        <div class="card-body bg-light rounded">
+                            {% if new_comment %}
+                                <div class="alert alert-success" role="alert">
+                                    Your comment is awaiting moderation
+                                </div>
+                            {% else %}
+                            <h3>Leave a comment</h3>
+                            <form method="post">
+                                {{ comment_form|crispy }}
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-lg-10">
+            <h1>Delete Post</h1>
+                <form action="" method="post">{% csrf_token %}
+                <p>"{{ article.title }}" nomli postni o'chirishni istaysizmi?</p>
+                <button class="btn btn-danger ml-2" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
