@@ -3,4 +3,6 @@
 https://khumoyunblogs.herokuapp.com/
 
 ## How to start
-</hr>
+
+Clone repository and install requirements in your virtual environment
+* pip install -r requirements.txt 
